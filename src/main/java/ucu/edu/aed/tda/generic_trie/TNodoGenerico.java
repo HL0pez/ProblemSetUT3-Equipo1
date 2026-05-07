@@ -46,4 +46,8 @@ public interface TNodoGenerico<T extends Comparable<T>> {
      * retorna los hijos directos de este nodo
      */
     List<T> obtenerHijos();
+
+    void setHermanoDerecho(TNodoGenerico hermanoDerecho);
+
+    void setPadre(Object object);
 }

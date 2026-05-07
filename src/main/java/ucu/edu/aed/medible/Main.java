@@ -1,11 +1,10 @@
 package ucu.edu.aed.medible;
 
-
 import ucu.edu.aed.medible.lib.Medible;
 import ucu.edu.aed.medible.lib.Medicion;
 import ucu.edu.aed.medible.medibles.MedicionBuscarLinkedList;
 import ucu.edu.aed.tda.trie.TTrie;
-import ucu.edu.aed.tda.trie.impl.Trie;
+//import ucu.edu.aed.tda.trie.impl.Trie;
 import ucu.edu.aed.utils.FileUtils;
 
 import java.util.*;
@@ -15,7 +14,7 @@ public class Main {
     private static final int REPETICIONES = 100;
 
     public static void main(String[] args) {
-        TTrie<String> trie = new Trie<>();
+        // TTrie<String> trie = new Trie<>();
         LinkedList<String> linkedList = new LinkedList<>();
         ArrayList<String> arrayList = new ArrayList<>();
         Map<String, String> hashMap = new HashMap<>();
@@ -32,7 +31,7 @@ public class Main {
             // insertar la palabra p en el linkedList
             linkedList.add(p);
             // insertar la palabra p en el arrayList
-//            arrayList.add(p);
+            // arrayList.add(p);
             // insertar la palabra p en el hashMap
             // TODO
             // insertar la palabra p en el treeMap
@@ -43,7 +42,7 @@ public class Main {
         medibles.add(new MedicionBuscarLinkedList(linkedList));
 
         // TODO implementar MedicionBuscarArrayList
-//        medibles.add(new MedicionBuscarArrayList(arrayList));
+        // medibles.add(new MedicionBuscarArrayList(arrayList));
 
         // TODO implementar MedicionBuscarTrie
         // medibles.add(new MedicionBuscarTrie(trie));
