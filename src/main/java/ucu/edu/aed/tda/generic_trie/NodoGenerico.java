@@ -114,20 +114,32 @@ public class NodoGenerico implements TNodoGenerico {
 
     @Override
     public void preOrden(Consumer consumidor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'preOrden'");
+        // visitamos
+        consumidor.accept(this.dato);
+
+        hijoIzquierdo = this.hijoIzquierdo;
+
+        while (hijoIzquierdo != null) {
+            hijoIzquierdo.preOrden(consumidor);
+            hijoIzquierdo = getHermanoDerecho(hijoIzquierdo);
+        }
     }
 
     @Override
-    public void inOrden(java.util.function.Consumer consumidor) {
+    public void inOrden(Consumer consumidor) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'inOrden'");
     }
 
     @Override
     public void postOrden(Consumer consumidor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'postOrden'");
+
+        hijoIzquierdo = this.hijoIzquierdo;
+        while (hijoIzquierdo != null) {
+            hijoIzquierdo.postOrden(consumidor);
+            hijoIzquierdo = getHermanoDerecho(hijoIzquierdo);
+        }
+        consumidor.accept(this.dato);
     }
 
     @Override
