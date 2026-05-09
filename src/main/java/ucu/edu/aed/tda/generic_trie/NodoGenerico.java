@@ -1,5 +1,7 @@
 package ucu.edu.aed.tda.generic_trie;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class NodoGenerico implements TNodoGenerico {
@@ -33,10 +35,6 @@ public class NodoGenerico implements TNodoGenerico {
         return this.hermanoDerecho;
     }
 
-    public void setPadre(TNodoGenerico padre) {
-        this.padre = padre;
-    }
-
     public void setHijoIzquierdo(TNodoGenerico hijo) {
         this.hijoIzquierdo = hijo;
     }
@@ -56,10 +54,12 @@ public class NodoGenerico implements TNodoGenerico {
 
     @Override
     public TNodoGenerico eliminar(Comparable criterio) {
+
         TNodoGenerico hijo = this.hijoIzquierdo;
         TNodoGenerico hermanoAnterior = null;
 
         while (hijo != null) {
+
             if (hijo.getDato().equals(criterio)) {
 
                 if (hermanoAnterior == null) {
@@ -81,11 +81,8 @@ public class NodoGenerico implements TNodoGenerico {
             }
             hermanoAnterior = hijo;
             hijo = getHermanoDerecho(hijo);
-
         }
-
         return null;
-
     }
 
     @Override
@@ -117,27 +114,37 @@ public class NodoGenerico implements TNodoGenerico {
         // visitamos
         consumidor.accept(this.dato);
 
-        hijoIzquierdo = this.hijoIzquierdo;
+        TNodoGenerico hijo = this.hijoIzquierdo;
 
-        while (hijoIzquierdo != null) {
-            hijoIzquierdo.preOrden(consumidor);
-            hijoIzquierdo = getHermanoDerecho(hijoIzquierdo);
+        while (hijo != null) {
+            hijo.preOrden(consumidor);
+            hijo = getHermanoDerecho(hijo);
         }
     }
 
     @Override
     public void inOrden(Consumer consumidor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inOrden'");
+        TNodoGenerico hijo = this.hijoIzquierdo;
+
+        while (hijo != null) {
+            hijo.inOrden(consumidor);
+            hijo = getHermanoDerecho(hijo);
+        }
+        consumidor.accept(this.dato);
+        while (hijo != null) {
+            hijo.inOrden(consumidor);
+            hijo = getHermanoDerecho(hijo);
+
+        }
     }
 
     @Override
     public void postOrden(Consumer consumidor) {
 
-        hijoIzquierdo = this.hijoIzquierdo;
-        while (hijoIzquierdo != null) {
-            hijoIzquierdo.postOrden(consumidor);
-            hijoIzquierdo = getHermanoDerecho(hijoIzquierdo);
+        TNodoGenerico hijo = this.hijoIzquierdo;
+        while (hijo != null) {
+            hijo.postOrden(consumidor);
+            hijo = getHermanoDerecho(hijo);
         }
         consumidor.accept(this.dato);
     }
@@ -150,26 +157,44 @@ public class NodoGenerico implements TNodoGenerico {
 
     @Override
     public int grado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'grado'");
+        int grado = 0;
+        TNodoGenerico hijo = this.hijoIzquierdo;
+        while (hijo != null) {
+            grado++;
+            hijo = getHermanoDerecho(hijo);
+        }
+        return grado;
     }
 
     @Override
     public void vaciar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'vaciar'");
+
+        for (TNodoGenerico hijo : obtenerHijos()) {
+            hijo.vaciar();
+        }
+
+        this.hijoIzquierdo = null;
+        this.hermanoDerecho = null;
+        this.padre = null;
+
     }
 
     @Override
-    public java.util.List obtenerHijos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerHijos'");
+    public List<TNodoGenerico> obtenerHijos() {
+        List<TNodoGenerico> hijos = new LinkedList<TNodoGenerico>();
+        TNodoGenerico actual = this.hijoIzquierdo;
+
+        while (actual != null) {
+            hijos.add(actual);
+            actual = getHermanoDerecho(actual);
+        }
+        return hijos;
+
     }
 
     @Override
-    public void setPadre(Object object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPadre'");
+    public void setPadre(TNodoGenerico padre) {
+        this.padre = padre;
     }
 
 }

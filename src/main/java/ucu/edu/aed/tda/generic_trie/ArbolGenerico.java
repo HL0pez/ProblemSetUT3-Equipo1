@@ -12,14 +12,24 @@ public class ArbolGenerico<T> implements TArbolGenerico {
 
     @Override
     public boolean agregarHijo(Comparable padre, Comparable hijo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarHijo'");
+        if (raiz == null) {
+            return false;
+        }
+
+        return raiz.agregarHijo(padre, hijo);
     }
 
     @Override
     public void eliminar(Comparable criterio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        if (raiz == null) {
+            return null;
+        }
+
+        if (raiz.getDato().equals(criterio)) {
+            TNodoGenerico nodoAEliminar = raiz;
+            // raiz = getHermanoDerecho(nodoAEliminar);
+
+        }
     }
 
     @Override
@@ -30,16 +40,17 @@ public class ArbolGenerico<T> implements TArbolGenerico {
 
     @Override
     public Comparable buscar(Comparable criterio) {
-        if(raiz == null) {
+        if (raiz == null) {
             return null;
-        }   return raiz.buscar(criterio).getDato();
+        }
+        return raiz.buscar(criterio).getDato();
     }
 
     @Override
     public void preOrden(Consumer consumidor) {
-       if(raiz != null) {
-           raiz.preOrden(consumidor);
-       }    
+        if (raiz != null) {
+            raiz.preOrden(consumidor);
+        }
     }
 
     @Override
@@ -50,21 +61,24 @@ public class ArbolGenerico<T> implements TArbolGenerico {
 
     @Override
     public void postOrden(Consumer consumidor) {
-    if(raiz != null) {
-        raiz.postOrden(consumidor);
-    }
+        if (raiz != null) {
+            raiz.postOrden(consumidor);
+        }
     }
 
     @Override
     public void vaciar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'vaciar'");
+        this.raiz = null;
     }
 
     @Override
     public int grado(Comparable nodo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'grado'");
+        if (raiz == null) {
+            return 0;
+        } else {
+            return raiz.grado();
+        }
+
     }
 
     @Override

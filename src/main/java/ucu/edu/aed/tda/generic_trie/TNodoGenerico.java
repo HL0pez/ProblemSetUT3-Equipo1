@@ -1,6 +1,5 @@
 package ucu.edu.aed.tda.generic_trie;
 
-
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -49,5 +48,5 @@ public interface TNodoGenerico<T extends Comparable<T>> {
 
     void setHermanoDerecho(TNodoGenerico hermanoDerecho);
 
-    void setPadre(Object object);
+    void setPadre(TNodoGenerico object);
 }
