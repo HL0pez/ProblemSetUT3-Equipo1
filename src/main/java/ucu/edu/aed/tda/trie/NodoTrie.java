@@ -20,7 +20,14 @@ public class NodoTrie<T> implements TNodoTrie<T> {
 
     @Override
     public void recorrer(Consumer<Entry<T>> consumer) {
-        throw new UnsupportedOperationException("Unimplemented method 'recorrer'");
+        if (this.esPalabra) {
+            consumer.accept(this.dato);
+        }
+        for (NodoTrie<T> hijo : hijos) {
+            if (hijo != null) {
+                hijo.recorrer(consumer);
+            }
+        }
     }
 
     @Override
@@ -53,8 +60,8 @@ public class NodoTrie<T> implements TNodoTrie<T> {
             int indice = c - 'a';
             if (nodoActual.hijos[indice] == null) {
 
-                NodoTrie<T> nuevoHijo = nodoActual.hijos[indice];
-                nodoActual.agregarHijo(nuevoHijo, c);
+                NodoTrie<T> nuevoHijo = new NodoTrie<>();
+                nodoActual.hijos[indice] = nuevoHijo;
             }
             nodoActual = nodoActual.hijos[indice];
         }
@@ -79,6 +86,6 @@ public class NodoTrie<T> implements TNodoTrie<T> {
 
     @Override
     public boolean esPalabra() {
-        throw new UnsupportedOperationException("Unimplemented method 'esPalabra'");
+        return esPalabra();
     }
 }
