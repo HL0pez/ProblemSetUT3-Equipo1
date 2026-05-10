@@ -21,15 +21,10 @@ public class ArbolGenerico<T> implements TArbolGenerico {
 
     @Override
     public void eliminar(Comparable criterio) {
-        if (raiz == null) {
-            return null;
+        if (raiz != null) {
+            eliminar(criterio);
         }
 
-        if (raiz.getDato().equals(criterio)) {
-            TNodoGenerico nodoAEliminar = raiz;
-            // raiz = getHermanoDerecho(nodoAEliminar);
-
-        }
     }
 
     @Override

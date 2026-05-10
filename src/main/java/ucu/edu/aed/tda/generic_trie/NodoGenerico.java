@@ -45,11 +45,39 @@ public class NodoGenerico implements TNodoGenerico {
 
     @Override
     public boolean agregarHijo(Comparable padre, Comparable hijo) {
-        if (hijo == null) {
-            return false;
-        }
-        return true;
 
+        // encontramos al padre
+        if (this.dato.equals(padre)) {
+            TNodoGenerico nuevoHijo = new NodoGenerico(hijo);
+            nuevoHijo.setPadre(this);
+
+            // no tiene hijos
+            if (this.hijoIzquierdo == null) {
+                this.hijoIzquierdo = nuevoHijo;
+                return true;
+            } else {
+
+                // recorremos los hermanos
+                TNodoGenerico actual = this.hijoIzquierdo;
+                while (getHermanoDerecho(actual) != null) {
+                    actual = getHermanoDerecho(actual);
+                }
+                actual.setHermanoDerecho(nuevoHijo);
+                return true;
+            }
+            // busqueda recursiva en los hijos
+        } else {
+            TNodoGenerico hijoActual = this.hijoIzquierdo;
+            while (hijoActual != null) {
+                boolean agregado = hijoActual.agregarHijo(padre, hijo);
+                if (agregado) {
+                    return true;
+                }
+
+                hijoActual = getHermanoDerecho(hijoActual);
+            }
+        }
+        return false;
     }
 
     @Override
@@ -151,8 +179,21 @@ public class NodoGenerico implements TNodoGenerico {
 
     @Override
     public int altura() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'altura'");
+        if (this.hijoIzquierdo == null) {
+            return 1;
+        }
+
+        TNodoGenerico hijo = this.hijoIzquierdo;
+        int alturaMaxima = 0;
+        while (hijo != null) {
+            int alturaHijo = hijo.altura();
+            if (alturaHijo > alturaMaxima) {
+                alturaMaxima = alturaHijo;
+            }
+            hijo = getHermanoDerecho(hijo);
+        }
+        return alturaMaxima + 1;
+
     }
 
     @Override
