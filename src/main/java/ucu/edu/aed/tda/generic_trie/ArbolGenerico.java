@@ -53,6 +53,7 @@ public class ArbolGenerico<T> implements TArbolGenerico {
       if(raiz != null) {
           raiz.inOrden(consumidor);
         }
+    }
 
     @Override
     public void postOrden(Consumer consumidor) {

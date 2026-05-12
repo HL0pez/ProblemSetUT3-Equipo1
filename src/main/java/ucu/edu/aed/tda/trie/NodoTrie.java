@@ -3,8 +3,6 @@ package ucu.edu.aed.tda.trie;
 import java.util.List;
 import java.util.function.Consumer;
 
-import javax.xml.soap.Node;
-
 public class NodoTrie<T> implements TNodoTrie<T> {
 
     private Entry<T> dato;
