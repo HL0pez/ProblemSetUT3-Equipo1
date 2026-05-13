@@ -208,7 +208,7 @@ public class ArbolGenealogico {
     }
 
     private NodoPersona buscarNodoRec(NodoPersona nodo, String nombre) {
-        
+       
         if (nodo == null || nombre == null) {
             return null;
         }
