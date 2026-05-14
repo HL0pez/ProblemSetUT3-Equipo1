@@ -1,6 +1,7 @@
 package ucu.edu.aed.Ejercicios.Ejercicio12;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import junit.framework.TestCase;
 import ucu.edu.aed.tda.trie.Entry;
@@ -37,4 +38,20 @@ public class TTrieHashMapAutocompletarTest extends TestCase {
         List<Entry<String>> resultado = trie.predecir("programa");
         assertEquals(3, resultado.size());
     }
+
+    public void testPredecirConPrefijoPrograma() {
+        List<Entry<String>> resultado = trie.predecir("programa");
+        List<String> palabras = resultado.stream().map(Entry::getPalabra).collect(Collectors.toList());
+        assertTrue(palabras.contains("programa"));
+        assertTrue(palabras.contains("programar"));
+        assertTrue(palabras.contains("programacion"));
+    }
+    
+    public void testPredecirConPrefijoVacioDevuelveTodo() {
+        List<Entry<String>> resultado = trie.predecir("");
+        assertEquals(8, resultado.size());
+    }
+
+
+
 }
