@@ -21,12 +21,10 @@ public class Main {
         NodoPersona sofia = new NodoPersona(new Persona("Sofia", 2015));
         NodoPersona mateo = new NodoPersona(new Persona("Mateo", 2018));
 
-        // Generación 1
         elena.agregarHijo(carlos);
         elena.agregarHijo(marta);
         elena.agregarHijo(luis);
 
-        // Generación 2
         carlos.agregarHijo(ana);
         carlos.agregarHijo(pedro);
 
@@ -34,7 +32,6 @@ public class Main {
 
         luis.agregarHijo(diego);
 
-        // Generación 3
         ana.agregarHijo(sofia);
         lucia.agregarHijo(mateo);
 
