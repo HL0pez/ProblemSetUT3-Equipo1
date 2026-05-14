@@ -84,6 +84,6 @@ public class NodoTrie<T> implements TNodoTrie<T> {
 
     @Override
     public boolean esPalabra() {
-        return esPalabra();
+        return this.esPalabra;
     }
 }
