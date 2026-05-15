@@ -3,7 +3,7 @@ package ucu.edu.aed.Ejercicios.Ejercicio15;
 import java.util.HashSet;
 import java.util.Set;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         
         Libro libro1 = new Libro("53453","Quijote", "Miguel de Cervantes", 1605);
