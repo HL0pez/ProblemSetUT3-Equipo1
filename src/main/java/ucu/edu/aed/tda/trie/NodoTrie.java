@@ -1,9 +1,12 @@
 package ucu.edu.aed.tda.trie;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class NodoTrie<T> implements TNodoTrie<T> {
+import java.io.Serializable;
+
+public class NodoTrie<T> implements TNodoTrie<T>, Serializable {
 
     private Entry<T> dato;
     private NodoTrie<T>[] hijos;
@@ -73,7 +76,30 @@ public class NodoTrie<T> implements TNodoTrie<T> {
 
     @Override
     public List<Entry<T>> predecir(String prefijo) {
-        throw new UnsupportedOperationException("Unimplemented method 'predecir'");
+        List<Entry<T>> resultados = new ArrayList<>();
+        NodoTrie<T> nodoActual = this;
+        for (char c : prefijo.toCharArray()) {
+            int indice = c - 'a';
+
+            NodoTrie<T> unHijo = nodoActual.hijos[indice];
+            if (unHijo == null) {
+                return resultados;
+            }
+            nodoActual = unHijo;
+        }
+        nodoActual.recolectar(resultados, nodoActual);
+        return resultados;
+    }
+
+    private void recolectar(List<Entry<T>> lista, NodoTrie<T> nodo) {
+        if (nodo.esPalabra) {
+            lista.add(nodo.dato);
+        }
+        for (NodoTrie<T> hijo : hijos) {
+            if (hijo != null) {
+                hijo.recolectar(lista, hijo);
+            }
+        }
     }
 
     @Override

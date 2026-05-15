@@ -1,6 +1,8 @@
 package ucu.edu.aed.tda.trie;
 
-public class Entry<T> {
+import java.io.Serializable;
+
+public class Entry<T> implements Serializable {
     private final T dato;
     private final String palabra;
     private final boolean esPalabra;
