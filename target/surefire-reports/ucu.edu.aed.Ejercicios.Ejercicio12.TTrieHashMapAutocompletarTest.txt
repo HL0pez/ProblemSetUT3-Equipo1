@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ucu.edu.aed.Ejercicios.Ejercicio12.TTrieHashMapAutocompletarTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in ucu.edu.aed.Ejercicios.Ejercicio12.TTrieHashMapAutocompletarTest
