@@ -1,0 +1,13 @@
+1) El atributo que debería determinar la identidad lógica de un Libro es isbn.
+Ya que el ISBN es un identificador único asignado a una edición concreta de un libro. Por lo tanto, dos objetos Libro con el mismo isbn 
+deberían considerarse el mismo, aunque sean instancias distintas en memoria.
+No conviene usar título, autor o año como identidad porque pueden repetirse.
+
+3) El error conceptual es que se rompe el contrato general entre equals y hashCode.Si dos objetos son iguales según equals, entonces deben 
+devolver el mismo valor de hashCode. Pero si hashCode usa título, podrían tener códigos hash distintos. En un HashSet o HashMap, esto puede 
+provocar que ambos objetos terminen en ubicaciones internas distintas, haciendo que la estructura no detecte que representan el mismo libro.
+
+5) Si equals y hashCode están correctamente implementados, el HashSet debería conservar un solo elemento. (Está demostrado en el main)
+Esto ocurre porque HashSet usa primero el hashCode para ubicar el objeto en una zona interna y luego usa equals para determinar si 
+ya existe un elemento equivalente.
+

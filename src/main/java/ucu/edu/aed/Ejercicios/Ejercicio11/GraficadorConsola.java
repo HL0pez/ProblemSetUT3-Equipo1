@@ -11,7 +11,7 @@ public class GraficadorConsola {
             return;
         }
  
-        System.out.println("=== Top 10 palabras más frecuentes ===\n");
+        System.out.println(" - Top 10 palabras más frecuentes\n");
  
         int maxFrecuencia = top10.get(0).getValue();
  
@@ -20,8 +20,7 @@ public class GraficadorConsola {
             int frecuencia = entry.getValue();
  
             int largoBarra = (int) ((frecuencia / (double) maxFrecuencia) * 40);
-            String barra = "#".repeat(largoBarra);
- 
+            String barra = new String(new char[largoBarra]).replace('\0', '#'); 
             System.out.printf("%-20s - %s (%d)%n", palabra, barra, frecuencia);
         }
     }
